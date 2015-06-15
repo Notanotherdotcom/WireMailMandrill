@@ -239,6 +239,22 @@ class WireMailMandrill extends WireMail implements Module, ConfigurableModule {
 				'type' => 'to',
 			);
 		}
+		
+		foreach ($this->cc as $rcpt) {
+			$this->message['to'][] = array(
+				'email' => $rcpt,
+				'name' => $this->toName[$rcpt],
+				'type' => 'cc',
+			);
+		}
+		
+		foreach ($this->bcc as $rcpt) {
+			$this->message['to'][] = array(
+				'email' => $rcpt,
+				'name' => $this->toName[$rcpt],
+				'type' => 'bcc',
+			);
+		}
 
 		$this->message['headers'] = $this->header;
 
